@@ -53,12 +53,13 @@ body {
   padding: 25px;
   text-align: left;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 10px rgba(180, 4, 4, 0.15);
 }
 
 .match-card h2 {
   margin-bottom: 20px;
   font-size: 25px;
+  color: #d90429;
 }
 
 .match-card button {
@@ -82,7 +83,7 @@ body {
   padding: 28px;
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 10px rgba(25, 28, 225, 0.15);
 }
 
 .booking-form {
@@ -116,7 +117,7 @@ body {
   width: 100%;
   box-sizing: border-box;
   padding: 12px;
-  border: 1px solid #c5cad3;
+  border: 1px solid #224fa4;
   border-radius: 6px;
   font: inherit;
 }
@@ -131,7 +132,7 @@ body {
   width: 100%;
   box-sizing: border-box;
   padding: 12px;
-  border: 1px solid #c5cad3;
+  border: 1px solid #134bb5;
   border-radius: 6px;
   font: inherit;
 }
@@ -207,4 +208,54 @@ body {
 
 .history-table tbody tr:hover {
   background-color: #f2f7fb;
+}
+
+.booking_form select {
+  color: #111827;
+  background-color: #fff;
+}
+
+.booking_form select option {
+  color: #111827;
+  background-color: #fff;
+}
+
+/* Booking page fixes */
+
+.booking-page h1 {
+  color: #111827 !important;
+}
+
+.booking-form label {
+  color: #111827 !important;
+}
+
+.booking-form select {
+  color: #111827 !important;
+  background-color: #ffffff !important;
+  font-weight: 600;
+}
+
+.booking-form select option {
+  color: #111827 !important;
+  background-color: #ffffff !important;
+  font-weight: 600;
+}
+
+.match-card h2 {
+  color: #d90429 !important;
+}
+
+.booking-form input {
+  background-color: #eef6ff !important;
+  color: #111827 !important;
+  border: 1px solid #60a5fa;
+}
+
+.booking-form input::placeholder {
+  color: #64748b !important;
+}
+
+h1 {
+  color: #d90429 !important;
 }

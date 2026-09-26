@@ -1,4 +1,5 @@
-
+import { useEffect, useState } from "react";
+import { supabase } from "../supabase";
 function MatchCard(props) {
     return (
         <div className="match-card">
@@ -18,25 +19,53 @@ function MatchCard(props) {
 }
 
 function Matches() {
+    const [matches, setMatches] = useState([]);
+
+    useEffect(() => {
+        const fetchMatches = async () => {
+            const { data, error } = await supabase
+                .from("matches")
+                .select("*");
+
+            if (error) {
+                console.error("Error fetching matches:", error);
+            } else {
+                setMatches(data);
+            }
+        };
+
+        fetchMatches();
+
+        const channel = supabase.channel("matches_channel").on(
+            "postgres_changes",
+            { event: "*", schema: "public", table: "matches" }, 
+            (payload) => {
+                console.log("Realtime change:",payload);
+                fetchMatches();
+            }
+        )
+        .subscribe((status) => {console.log("Realtime status:",status)});
+
+       return () => {
+            supabase.removeChannel(channel);
+        };
+    }, []);
+
     return (
         <main className="matches-page">
 
             <h1>Upcoming IPL Matches</h1>
 
             <div className="matches-grid">
-                <MatchCard
-                    team1="RCB"
-                    team2="CSK"
-                    venue="M. Chinnaswamy Stadium, Bengaluru"
-                    date="25 March 2026"
-                />
-                <MatchCard
-                    team1="MI"
-                    team2="KKR"
-                    venue="Wankhede Stadium, Mumbai"
-                    date="28 March 2026"
-                />
-
+                {matches.map((match) => (
+                    <MatchCard
+                        key={match.id}
+                        team1={match.team1}
+                        team2={match.team2}
+                        venue={match.venue}
+                        date={match.date}
+                    />
+                ))}
             </div>
 
         </main>
